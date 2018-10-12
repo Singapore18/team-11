@@ -4,26 +4,22 @@ var mongoose = require('mongoose'),
     JobPosting = mongoose.model('JobPosting');
 // exports.funtionName = (reqest, response) => { Login goes here}
 
-exports.createEmployer = (req, res) => {
+exports.showPosting = (req, res) => {
     // TODO
     var response = req.response
     var industry = response.industry
     var companyName = response.companyName //array of answer strings
-    var postings = response.postings
-    var email = response.email
-    var password = response.password
-    var salt = response.salt
+    var postingName = response.postingName
+    var description = response.description
 
-    var newEmployer = new Employer({
+    var newJobPosting = new JobPosting({
         industry: industry,
-        name: name,
-        postings: postings,
-        email: email,
-        password: password,
-        salt: salt
+        companyName: companyName,
+        postingName: postingName,
+        description: description
     })
 
-    newEmployer.save(function (err, question) {
+    newJobPosting.save(function (err, question) {
         if (err)
             res.send(err);
         else   
@@ -34,7 +30,7 @@ exports.createEmployer = (req, res) => {
     res.status(200).send('Not implemented yet');
 }
 
-exports.getEmployer = (req, res) => {
+exports.getJobPosting = (req, res) => {
     // TODO
     console.log(`${(new Date()).toLocaleString()}|A request for ${req.originalUrl}`)
     res.status(200).send('Not implemented yet');

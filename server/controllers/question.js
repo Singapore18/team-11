@@ -8,10 +8,12 @@ exports.parseResponse = (req, res) => {
     // TODO
     var response = req.response
     var questionNum = response.questionNum
+    var createdAt = new Date();
     var answers = response.answers //array of answer strings
 
     var newResponses = new Question({
         question: questionNum,
+        createdAt: createdAt,
         answers: answers
     })
 
