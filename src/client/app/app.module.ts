@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 
 import { LoginModule } from './login/login.module';
+//import { RegisterModule } from './register/register.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -17,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
 		HttpModule,
 		RouterModule.forRoot(routes),
 		LoginModule,
+		//RegisterModule,
 		DashboardModule,
 		SharedModule.forRoot()
 	],
