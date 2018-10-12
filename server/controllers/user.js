@@ -45,7 +45,7 @@ exports.createUser = (req, res) => {
 }
 
 exports.getUser = (req, res) => {
-    User.findOne(req.params.id, (err, user) => {
+    User.findById(req.params.id, (err, user) => {
         if (err || !user) {
             res.status(404).send({ error: "No such user" });
         } else {
@@ -58,9 +58,16 @@ exports.getAllUsers = (req, res) => {
     User.find({}, (err, users) => {
         if (!users)
             users = [];
-
+        users = usersFilter(users);
         res.json({ users: users })
     })
+}
+
+function usersFilter(users) {
+    users.forEach((u) => {
+        u.answers = null
+    })
+    return users;
 }
 
 /*
