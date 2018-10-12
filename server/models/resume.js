@@ -4,8 +4,12 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 module.exports =
-    mongoose.model('Employer', {
-        
+    mongoose.model('Resume', {
+        personal_info: {
+            fullName: String,
+            preferredName: String,
+            contactNumber: String
+        },
         personal_interest: String ,
         work_strength: String,
         work_experience: String,
@@ -14,8 +18,6 @@ module.exports =
         how_to_support: String,
         job_requests: String,
         interested_industries: [],
-        name: String,
-        email: String
     }  
     
     )

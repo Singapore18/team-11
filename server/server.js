@@ -19,7 +19,7 @@ var mongoose = require('mongoose');
 
 // Load Mongoose Models 
 var User = require('./models/user'),
-
+    Resume = require('./models/resume'),
     Employer = require('./models/employer');
 
 mongoose.Promise = global.Promise;
