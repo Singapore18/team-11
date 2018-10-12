@@ -4,7 +4,7 @@ import { ResumeComponent } from './index';
 
 export const ResumeRoutes: Route[] = [
 	{
-		path: 'resume',
+		path: 'resume/tim123',
 		component: ResumeComponent
 	}
 ];
