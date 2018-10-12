@@ -17,11 +17,17 @@ module.exports = (app, passport) => {
     app.post('api/users', userController.createUser(res, req));
     // :id is a "path parameter", frontend will put a user id here so we can get one user for them
     app.get('api/users/:id', userController.getUser(res, req));
+
+    app.post('api/employer', employerController.createEmployer(res,req));
+
     app.get('api/employers/:id', employerController.getEmployer(res, req));
+
 
     app.post('api/questions', questionController.parseResponse(res,req));
 
-    app.post('api/employer', employerController.createEmployer(res,req));
+    app.post('api/jobPosting', jobPostingController.showPosting(res,req));
+
+
 
     //TODO 
 }

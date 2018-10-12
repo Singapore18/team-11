@@ -8,5 +8,6 @@ module.exports =
         // _id (with the undersocre) is to override the default id type to String, then maybe we can use email as id
         // _id: String, 
         question: String,
+        createdAt: Date,
         answers: []
     })
