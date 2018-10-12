@@ -6,36 +6,38 @@ var mongoose = require('mongoose'),
 
 exports.createEmployer = (req, res) => {
     // TODO
-    var response = req.response
-    var industry = response.industry
-    var name = response.name //array of answer strings
-    var postings = response.postings
-    var email = response.email
-    var password = response.password
-    var salt = response.salt
+
+    let employer = req.employer;
+    let industry = employer.industry;
+    let name = employer.name;
+    let email = employer.email;
+
 
     var newEmployer = new Employer({
         industry: industry,
         name: name,
-        postings: postings,
-        email: email,
-        password: password,
-        salt: salt
+        email: email
     })
 
     newEmployer.save(function (err, question) {
         if (err)
             res.send(err);
         else   
-            res.ok();
+            res.json({ name: name });
     }) 
 
-    console.log(`${(new Date()).toLocaleString()}|A request for ${req.originalUrl}`)
-    res.status(200).send('Not implemented yet');
 }
 
 exports.getEmployer = (req, res) => {
     // TODO
+    Employer.findOne(req.params.id, (err, employer) => {
+        if (err || !employer) {
+            res.status(404).send({ error: "No such employer" });
+        } else {
+            res.json(employer);
+        }
+    })
+
     console.log(`${(new Date()).toLocaleString()}|A request for ${req.originalUrl}`)
     res.status(200).send('Not implemented yet');
 }
