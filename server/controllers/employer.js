@@ -37,7 +37,4 @@ exports.getEmployer = (req, res) => {
             res.json(employer);
         }
     })
-
-    console.log(`${(new Date()).toLocaleString()}|A request for ${req.originalUrl}`)
-    res.status(200).send('Not implemented yet');
 }
