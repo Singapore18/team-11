@@ -4,13 +4,13 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 module.exports =
-    mongoose.model('User', {
+    mongoose.model('Question', {
         // _id (with the undersocre) is to override the default id type to String, then maybe we can use email as id
-        _id: String,
-        password: String,
-        salt: String,
-        firstName: String,
-        lastName: String,
+        // _id: String, 
+        industry: String,
+        name: String,
+        postings: [],
         email: String,
-        resume: {type: Mongoose.Schema.Types.ObjectId, ref: 'Resume'}
+        password: String,
+        salt: String
     })
