@@ -9,7 +9,7 @@ var jwt = require('jsonwebtoken'),
 
     //Import the controller that contains functions
 var userController = require('../controllers/user');
-
+var questionController = require('../controllers/question');
 // The API itself
 module.exports = (app, passport) => {
 
@@ -18,5 +18,7 @@ module.exports = (app, passport) => {
     // :id is a "path parameter", frontend will put a user id here so we can get one user for them
     app.get('api/users/:id', userController.getUser(res, req));
 
+
+    app.post('api/questions', questionController.parseResponse(res,req));
     //TODO 
 }
