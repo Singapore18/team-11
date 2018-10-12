@@ -32,7 +32,38 @@ exports.createUser = (req, res) => {
 }
 
 exports.getUser = (req, res) => {
-    // TODO
-    console.log(`${(new Date()).toLocaleString()}|A request for ${req.originalUrl}`)
-    res.status(200).send('Not implemented yet');
+    User.findOne(req.id, (err, user) => {
+        if (err || !user) {
+            res.status(404).send({ error: "No such user" });
+        } else {
+            user = userFilter(user);
+            res.json(user);
+        }
+    })
+}
+
+exports.updateUser = (req, res) => {
+    let oldUser = req.user;
+    let update = {
+        email: oldUser.email,
+        contact: oldUser.contact,
+        firstName: oldUser.firstName,
+        lastName: lastName.lastName
+    }
+
+    User.findOneAndUpdate(oldUser.id, update, (err, user) => {
+        if (err || !user) {
+            res.status(404).send({ error: "No such user" });
+        } else {
+            user = userFilter(user);
+            res.json(user);
+        }
+    })
+}
+
+// To remove sensitive data
+function userFilter(user) {
+    user.salt = null;
+    user.password = null;
+    return user;
 }
