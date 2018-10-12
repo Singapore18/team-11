@@ -9,5 +9,8 @@ module.exports =
         // _id: String, 
         industry: String,
         name: String,
-        postings: []
+        postings: [],
+        email: String,
+        password: String,
+        salt: String
     })
