@@ -18,6 +18,8 @@ module.exports = (app, passport) => {
     app.post('api/users', userController.createUser);
     // :id is a "path parameter", frontend will put a user id here so we can get one user for them
     app.get('api/users/:id', userController.getUser);
+    app.put('api/users', userController.updateUser);
+
     app.get('api/employers/:id', employerController.getEmployer);
 
     app.post('api/questions', questionController.parseResponse);

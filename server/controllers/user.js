@@ -32,7 +32,7 @@ exports.createUser = (req, res) => {
 }
 
 exports.getUser = (req, res) => {
-    User.findOne(req.id, (err, user) => {
+    User.findOne(req.params.id, (err, user) => {
         if (err || !user) {
             res.status(404).send({ error: "No such user" });
         } else {
@@ -43,7 +43,7 @@ exports.getUser = (req, res) => {
 }
 
 exports.updateUser = (req, res) => {
-    let oldUser = req.user;
+    let oldUser = req.body.user;
     let update = {
         email: oldUser.email,
         contact: oldUser.contact,
