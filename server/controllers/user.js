@@ -8,6 +8,7 @@ exports.createUser = (req, res) => {
     let body = req.body;
     var info = body.personalInfo;
     let user = new User({
+        _id: body.resumeId,
         personalInfo: {
             fullName: info.fullName,
             preferredName: info.preferredName,
