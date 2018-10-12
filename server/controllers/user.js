@@ -15,7 +15,7 @@ exports.createUser = (req, res) => {
         } else {
             const salt = bcrypt.genSaltSync();
             password = bcrypt.hashSync(password + salt, 10)
-            var new_user = new Staff({
+            var new_user = new User({
                 _id: username,
                 password: password,
                 salt: salt,
