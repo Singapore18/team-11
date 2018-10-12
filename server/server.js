@@ -13,30 +13,14 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     MongoStore = require('connect-mongo')(session);
 
-// Passport.js is used to handle authentication (login etc.)
-var passport = require('passport'),
-    LocalStratagy = require('passport-local').Strategy,
-    passportJwt = require('passport-jwt'),
-    JwtStrategy = passportJwt.Strategy,
-    ExtractJwt = passportJwt.ExtractJwt;
 
 // Mongoose a package to query MongoDB data
 var mongoose = require('mongoose');
 
 // Load Mongoose Models 
 var User = require('./models/user'),
-    Resume = require('./models/resume'),
-    Question = require('./models/question'),
-    Employer = require('./models/employer'),
-    JobPosting = require('./models/jobPosting');
 
-    //A dummy record to create db
-    JobPosting.create({
-        industry: "-",
-        companyName: "-",
-        postingName: "-",
-        description: "-"
-    })
+    Employer = require('./models/employer');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(DB_ADDR, { useNewUrlParser: true });
@@ -44,9 +28,7 @@ mongoose.connect(DB_ADDR, { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(passport.initialize());
-
 var routes = require(ROUTES);
-routes(app, passport);
+routes(app);
 
 app.listen(PORT);

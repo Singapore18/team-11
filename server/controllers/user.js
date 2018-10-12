@@ -5,30 +5,40 @@ var mongoose = require('mongoose'),
 // exports.funtionName = (reqest, response) => { Login goes here}
 
 exports.createUser = (req, res) => {
-    let user = req.user;
-    let username = user.username;
-    let password = user.password;
-
-    User.findOne(username, (err, user) => {
-        if (user) {
-            res.status(400).send({ error: "Username already exists" });
-        } else {
-            const salt = bcrypt.genSaltSync();
-            password = bcrypt.hashSync(password + salt, 10)
-            var new_user = new Staff({
-                _id: username,
-                password: password,
-                salt: salt,
-            })
-            new_user.save(function (err, user) {
-                if (err)
-                    res.send(err);
-                else
-                    res.json({ username: username });
-            })
-        }
+    let body = req.body;
+    let user = new User({
+        fullName: body.fullName,
+        preferredName: body.preferredName,
+        email: body.email,
+        contact: body.contact
     })
 
+    var record = [];
+
+    body.answers.forEach((item) => {
+        var num = item.question;
+        if (num == 8) {
+            var answers = {
+                question: num,
+                answers: item.answers,
+            }
+            record.push(answers);
+        } else {
+            var answers = {
+                question: num,
+                answers: [item.answers],
+            }
+            record.push(answers);
+        }
+    })
+    user.answers = record;
+    user.save((err, done) => {
+        if (done) {
+            res.json({ id: done._id })
+        } else {
+            res.status(400).send({ error: "DB failure" })
+        }
+    })
 }
 
 exports.getUser = (req, res) => {
@@ -36,12 +46,21 @@ exports.getUser = (req, res) => {
         if (err || !user) {
             res.status(404).send({ error: "No such user" });
         } else {
-            user = userFilter(user);
             res.json(user);
         }
     })
 }
 
+exports.getAllUsers = (req, res) => {
+    User.find({}, (err, users) => {
+        if (!users)
+            users = [];
+
+        res.json({ users: users })
+    })
+}
+
+/*
 exports.updateUser = (req, res) => {
     let oldUser = req.body.user;
     let update = {
@@ -60,6 +79,7 @@ exports.updateUser = (req, res) => {
         }
     })
 }
+*/
 
 // To remove sensitive data
 function userFilter(user) {
