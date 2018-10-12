@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
 
 module.exports =
     mongoose.model('Resume', {
-       contact: String,
        personalInterest: String,
        workInterest: String,
        experience: String,

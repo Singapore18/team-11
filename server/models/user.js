@@ -12,5 +12,6 @@ module.exports =
         firstName: String,
         lastName: String,
         email: String,
+        contact: String,
         resume: {type: mongoose.Schema.Types.ObjectId, ref: 'Resume'}
     })
