@@ -19,7 +19,7 @@ exports.createUser = (req, res) => {
     var record = [];
 
     body.answers.forEach((item) => {
-        var num = item.question;
+        var num = parseInt(item.question);
         if (num == 8) {
             var answers = {
                 question: num,

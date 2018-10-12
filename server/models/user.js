@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 module.exports =
-    mongoose.model('User', {
+    mongoose.model('User', 
+    {
         _id: String,
         personalInfo: {
             fullName: String,
@@ -14,6 +15,5 @@ module.exports =
         answers: [{
             question: Number,
             answers: [],
-        }
-        ]
+        }]
     })
