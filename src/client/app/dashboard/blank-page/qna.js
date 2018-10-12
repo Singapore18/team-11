@@ -32,9 +32,18 @@ for(var i=0; i<checkBoxes.length; i++){
 }
 
 console.log("count is " + count);
-
+var dateNow = Date.now();
+console.log("Date is " + dateNow);
 function submitForm(){
     var obj = {
+        "resumeId" : "Jason"+dateNow,
+        "personalInfo" : [
+            {
+                "preferredName" : "Jason",
+                "fullName" : "Jason Teo",
+                "contactNumber" : "98765432",
+            }
+        ],
         "answer" : [
             {
                 "question" : "1",
