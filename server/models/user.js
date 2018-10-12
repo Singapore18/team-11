@@ -12,5 +12,5 @@ module.exports =
         firstName: String,
         lastName: String,
         email: String,
-        resume: {type: Mongoose.Schema.Types.ObjectId, ref: 'Resume'}
+        resume: {type: mongoose.Schema.Types.ObjectId, ref: 'Resume'}
     })

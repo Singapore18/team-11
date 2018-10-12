@@ -4,7 +4,7 @@
 
 const config = require('./config'),
     PORT = config.server.http_port,
-    ROUTES = config.server.routes
+    ROUTES = config.server.routes,
     DB_ADDR = config.db.addr;
 
 var express = require('express'),
@@ -23,8 +23,23 @@ var passport = require('passport'),
 // Mongoose a package to query MongoDB data
 var mongoose = require('mongoose');
 
+// Load Mongoose Models 
+var User = require('./models/user'),
+    Resume = require('./models/resume'),
+    Question = require('./models/question'),
+    Employer = require('./models/employer'),
+    JobPosting = require('./models/jobPosting');
+
+    //A dummy record to create db
+    JobPosting.create({
+        industry: "-",
+        companyName: "-",
+        postingName: "-",
+        description: "-"
+    })
+
 mongoose.Promise = global.Promise;
-// mongoose.connect(DB_ADDR);
+mongoose.connect(DB_ADDR, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
