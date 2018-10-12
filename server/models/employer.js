@@ -7,5 +7,8 @@ module.exports =
     mongoose.model('Employer', {
         industry: String,
         name: String,
-        email: String
+        postings: [],
+        email: String,
+        password: String,
+        salt: String
     })
