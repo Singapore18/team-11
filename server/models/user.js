@@ -5,10 +5,12 @@ var mongoose = require('mongoose'),
 
 module.exports =
     mongoose.model('User', {
-        fullName: String,
-        preferredName: String,
-        email: String,
-        contact: String,
+        _id: String,
+        personalInfo: {
+            fullName: String,
+            preferredName: String,
+            contactNumber: String,
+        },
         answers: [{
             question: Number,
             answers: [],

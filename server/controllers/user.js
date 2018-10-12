@@ -6,11 +6,13 @@ var mongoose = require('mongoose'),
 
 exports.createUser = (req, res) => {
     let body = req.body;
+    var info = body.personalInfo;
     let user = new User({
-        fullName: body.fullName,
-        preferredName: body.preferredName,
-        email: body.email,
-        contact: body.contact
+        personalInfo: {
+            fullName: info.fullName,
+            preferredName: info.preferredName,
+            contactNumber: info.contact
+        }
     })
 
     var record = [];
@@ -80,10 +82,3 @@ exports.updateUser = (req, res) => {
     })
 }
 */
-
-// To remove sensitive data
-function userFilter(user) {
-    user.salt = null;
-    user.password = null;
-    return user;
-}
